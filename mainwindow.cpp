@@ -2,11 +2,12 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow) {
+    : QMainWindow(parent), ui(new Ui::MainWindow), literatureBooks(new LiteratureBooks(this)) {
   ui->setupUi(this);
   connect(ui->btnConnect, SIGNAL(clicked(bool)), this, SLOT(dbconnect()));
   connect(ui->btnSelectAll, SIGNAL(clicked(bool)), this, SLOT(selectAll()));
   connect(ui->btnAdd, SIGNAL(clicked(bool)), this, SLOT(add()));
+  connect(ui->btnBooks, SIGNAL(clicked(bool)), this, SLOT(showLiteratureBooks()));
   connect(ui->btnDel, SIGNAL(clicked(bool)), this, SLOT(del()));
   connect(ui->btnEdit, SIGNAL(clicked(bool)), this, SLOT(edit()));
 
@@ -18,10 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
   ui->twData->setSelectionMode(QAbstractItemView::SingleSelection);
   ui->twData->setSelectionBehavior(QAbstractItemView::SelectRows);
   // Заголовки таблицы
-  ui->twData->setHorizontalHeaderItem(0, new QTableWidgetItem("lit_id"));
-  ui->twData->setHorizontalHeaderItem(1, new QTableWidgetItem("lit_name"));
-  ui->twData->setHorizontalHeaderItem(2, new QTableWidgetItem("author_id"));
-  ui->twData->setHorizontalHeaderItem(3, new QTableWidgetItem("genre_id"));
+  ui->twData->setHorizontalHeaderItem(0, new QTableWidgetItem("Код"));
+  ui->twData->setHorizontalHeaderItem(1, new QTableWidgetItem("Имя"));
+  ui->twData->setHorizontalHeaderItem(2, new QTableWidgetItem("Код автора"));
+  ui->twData->setHorizontalHeaderItem(3, new QTableWidgetItem("Код жанра"));
 
   // Последний столбец растягивается при изменении размера формы
   ui->twData->horizontalHeader()->setStretchLastSection(true);
@@ -33,6 +34,33 @@ MainWindow::~MainWindow() {
   if (dbconn.isOpen())
     dbconn.close();
   delete ui;
+}
+
+void MainWindow::showLiteratureBooks(){
+    int currow = ui->twData->currentRow();
+    if(currow < 0) {
+        QMessageBox::information(this, "Информация", "Выберите произведение из таблицы");
+        return;
+    }
+
+    qlonglong literatureId = ui->twData->item(currow, 0)->text().toLongLong();
+
+    // Проверяем соединение с БД
+    if(!dbconn.isOpen()) {
+        dbconnect();
+        if(!dbconn.isOpen()) {
+            QMessageBox::critical(this, "Ошибка", dbconn.lastError().text());
+            return;
+        }
+    }
+
+    // Вызываем метод загрузки визитов
+    literatureBooks->loadLiteratureBooks(literatureId, dbconn);
+
+    // Показываем окно с визитами
+    literatureBooks->show();
+    literatureBooks->raise();
+    literatureBooks->activateWindow();
 }
 
 void MainWindow::dbconnect() {

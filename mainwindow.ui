@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
+    <width>829</width>
     <height>600</height>
    </rect>
   </property>
@@ -73,20 +73,23 @@
        <enum>QFrame::Shadow::Plain</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="lbID">
+       <item row="0" column="1" colspan="4">
+        <widget class="QLineEdit" name="leId"/>
+       </item>
+       <item row="3" column="1" colspan="4">
+        <widget class="QLineEdit" name="leGenreId"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lbTitle">
          <property name="text">
-          <string>lit_id</string>
+          <string>Имя</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1" colspan="3">
-        <widget class="QLineEdit" name="leAuthorId"/>
-       </item>
-       <item row="1" column="1" colspan="3">
-        <widget class="QTextEdit" name="teName">
-         <property name="inputMethodHints">
-          <set>Qt::InputMethodHint::ImhNone</set>
+       <item row="5" column="4">
+        <widget class="QPushButton" name="btnDel">
+         <property name="text">
+          <string>Del</string>
          </property>
         </widget>
        </item>
@@ -97,38 +100,45 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
+       <item row="1" column="1" colspan="4">
+        <widget class="QTextEdit" name="teName">
+         <property name="inputMethodHints">
+          <set>Qt::InputMethodHint::ImhNone</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
         <widget class="QPushButton" name="btnEdit">
          <property name="text">
           <string>Edit</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="3">
-        <widget class="QPushButton" name="btnDel">
+       <item row="3" column="0">
+        <widget class="QLabel" name="label">
          <property name="text">
-          <string>Del</string>
+          <string>Код жанра</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="lbTitle">
-         <property name="text">
-          <string>lit_name</string>
-         </property>
-        </widget>
+       <item row="2" column="1" colspan="4">
+        <widget class="QLineEdit" name="leAuthorId"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="lbAddress">
          <property name="text">
-          <string>author_id</string>
+          <string>Код автора</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="3">
-        <widget class="QLineEdit" name="leId"/>
+       <item row="0" column="0">
+        <widget class="QLabel" name="lbID">
+         <property name="text">
+          <string>Код</string>
+         </property>
+        </widget>
        </item>
-       <item row="4" column="2">
+       <item row="4" column="3">
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
@@ -141,13 +151,10 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="1" colspan="3">
-        <widget class="QLineEdit" name="leGenreId"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label">
+       <item row="5" column="2">
+        <widget class="QPushButton" name="btnBooks">
          <property name="text">
-          <string>genre_id</string>
+          <string>Books</string>
          </property>
         </widget>
        </item>
@@ -161,7 +168,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>820</width>
+     <width>829</width>
      <height>25</height>
     </rect>
    </property>

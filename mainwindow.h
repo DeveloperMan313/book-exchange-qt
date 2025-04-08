@@ -7,6 +7,7 @@
 #include <QTableWidget>
 #include <QMessageBox>
 #include <QSqlError>
+#include "literaturebooks.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -25,6 +26,8 @@ public:
     QSqlDatabase dbconn;
 
 private slots:
+    void showLiteratureBooks();
+
     void dbconnect();
 
     void selectAll();
@@ -37,6 +40,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    LiteratureBooks *literatureBooks;
 };
 
 #endif // MAINWINDOW_H
