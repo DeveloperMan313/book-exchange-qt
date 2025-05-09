@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>829</width>
+    <width>831</width>
     <height>600</height>
    </rect>
   </property>
@@ -21,43 +21,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
-     <widget class="QPushButton" name="btnConnect">
-      <property name="text">
-       <string>Connect</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>277</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="0" column="3">
-     <widget class="QPushButton" name="btnSelectAll">
-      <property name="text">
-       <string>Select All</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="4">
-     <widget class="QTextEdit" name="teResult">
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1" colspan="3">
-     <widget class="QTableWidget" name="twData"/>
-    </item>
     <item row="0" column="0" rowspan="2">
      <widget class="QFrame" name="frame">
       <property name="sizePolicy">
@@ -89,14 +52,14 @@
        <item row="5" column="4">
         <widget class="QPushButton" name="btnDel">
          <property name="text">
-          <string>Del</string>
+          <string>Удалить</string>
          </property>
         </widget>
        </item>
        <item row="5" column="0" colspan="2">
         <widget class="QPushButton" name="btnAdd">
          <property name="text">
-          <string>Add</string>
+          <string>Добавить</string>
          </property>
         </widget>
        </item>
@@ -110,7 +73,7 @@
        <item row="5" column="3">
         <widget class="QPushButton" name="btnEdit">
          <property name="text">
-          <string>Edit</string>
+          <string>Изменить</string>
          </property>
         </widget>
        </item>
@@ -154,12 +117,15 @@
        <item row="5" column="2">
         <widget class="QPushButton" name="btnBooks">
          <property name="text">
-          <string>Books</string>
+          <string>Книги</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
+    </item>
+    <item row="0" column="1" rowspan="2" colspan="2">
+     <widget class="QTableWidget" name="twData"/>
     </item>
    </layout>
   </widget>
@@ -168,8 +134,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>829</width>
-     <height>25</height>
+     <width>831</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

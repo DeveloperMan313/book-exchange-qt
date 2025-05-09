@@ -1,6 +1,7 @@
 #ifndef LiteratureBooks_H
 #define LiteratureBooks_H
 
+#include "dbtable.h"
 #include <QMainWindow>
 #include <QSqlDatabase>
 
@@ -9,15 +10,16 @@ class LiteratureBooks;
 }
 
 class LiteratureBooks : public QMainWindow {
-  Q_OBJECT
+    Q_OBJECT
 
-public:
-  explicit LiteratureBooks(QWidget *parent = nullptr);
-  ~LiteratureBooks();
-  void loadLiteratureBooks(qlonglong literatureId, QSqlDatabase &db);
+  public:
+    explicit LiteratureBooks(QWidget *parent = nullptr);
+    ~LiteratureBooks();
+    void loadLiteratureBooks(qlonglong literatureId);
 
-private:
-  Ui::LiteratureBooks *ui;
+  private:
+    Ui::LiteratureBooks *ui;
+    DbTable *booksTable;
 };
 
 #endif // LiteratureBooks_H
