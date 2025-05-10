@@ -1,17 +1,23 @@
+#include "authcontroller.h"
+#include "buttongroups.h"
 #include "connectioncontroller.h"
-#include "mainwindow.h"
+#include "login.h"
 
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     connectionController = new ConnectionController();
+    authController = new AuthController();
+    buttonGroups = new ButtonGroups();
 
-    MainWindow w;
-    w.show();
-    int exitCode = a.exec();
+    Login login;
+    login.show();
+    int exitCode = app.exec();
 
+    delete buttonGroups;
+    delete authController;
     delete connectionController;
 
     return exitCode;

@@ -3,7 +3,6 @@
 
 #include "dbtable.h"
 #include <QMainWindow>
-#include <QSqlDatabase>
 
 namespace Ui {
 class LiteratureBooks;

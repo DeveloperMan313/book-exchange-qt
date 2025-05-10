@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "connectioncontroller.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
+#include <QSqlError>
+#include <QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow),

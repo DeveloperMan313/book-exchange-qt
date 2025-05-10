@@ -9,7 +9,7 @@ class ConnectionController {
 
     ~ConnectionController();
 
-    QSqlDatabase const &getConnection();
+    QSqlDatabase const &getConnection() const;
 
   private:
     void connect();

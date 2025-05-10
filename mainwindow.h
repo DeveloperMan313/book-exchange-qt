@@ -4,11 +4,6 @@
 #include "dbtable.h"
 #include "literaturebooks.h"
 #include <QMainWindow>
-#include <QMessageBox>
-#include <QSqlDatabase>
-#include <QSqlError>
-#include <QSqlQuery>
-#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 

@@ -7,7 +7,7 @@ ConnectionController::ConnectionController() { this->connect(); }
 
 ConnectionController::~ConnectionController() { this->connection.close(); }
 
-QSqlDatabase const &ConnectionController::getConnection() {
+QSqlDatabase const &ConnectionController::getConnection() const {
     return this->connection;
 }
 
