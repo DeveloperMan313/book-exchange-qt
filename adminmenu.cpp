@@ -1,6 +1,6 @@
 #include "adminmenu.h"
 #include "authcontroller.h"
-#include "buttongroups.h"
+#include "forms.h"
 #include "ui_adminmenu.h"
 
 AdminMenu::AdminMenu(QWidget *parent)
@@ -9,9 +9,18 @@ AdminMenu::AdminMenu(QWidget *parent)
     this->setFixedSize(400, 300);
     setWindowTitle("Меню администратора");
 
-    connect(ui->btnExit, &QPushButton::clicked, this,
-            [this]() { this->hide(); });
-    buttonGroups->login.addButton(ui->btnExit);
+    connect(ui->btnExit, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->login.show();
+        forms->login.raise();
+    });
+
+    connect(ui->btnAuthors, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->adminAuthors.init();
+        forms->adminAuthors.show();
+        forms->adminAuthors.raise();
+    });
 }
 
 void AdminMenu::init() {

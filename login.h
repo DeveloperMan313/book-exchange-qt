@@ -21,7 +21,6 @@ class Login : public QMainWindow {
 
   private:
     Ui::Login *ui;
-    AdminMenu adminMenu;
 };
 
 #endif // LOGIN_H

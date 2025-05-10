@@ -1,6 +1,6 @@
 #include "login.h"
 #include "authcontroller.h"
-#include "buttongroups.h"
+#include "forms.h"
 #include "ui_login.h"
 
 #include <QButtonGroup>
@@ -12,12 +12,6 @@ Login::Login(QWidget *parent) : QMainWindow(parent), ui(new Ui::Login) {
     setWindowTitle("Вход");
 
     connect(ui->btnLogin, SIGNAL(clicked(bool)), this, SLOT(login()));
-
-    connect(&buttonGroups->login, &QButtonGroup::idClicked, this, [this]() {
-        this->show();
-        this->raise();
-        this->activateWindow();
-    });
 }
 
 Login::~Login() { delete ui; }
@@ -33,10 +27,13 @@ void Login::login() {
     }
 
     this->hide();
+    ui->leEmail->setText("");
+    ui->lePassword->setText("");
 
     if (authController->getUser().isAdmin) {
-        this->adminMenu.init();
-        this->adminMenu.show();
+        forms->adminMenu.init();
+        forms->adminMenu.show();
+        forms->adminMenu.raise();
     } else {
         QMessageBox::critical(this, "Ошибка", "TODO: меню пользователя");
     }

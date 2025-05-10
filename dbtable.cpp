@@ -21,7 +21,7 @@ void DbTable::requestData(QSqlQuery &query) {
     bool querySuccess = query.exec();
 
     if (!querySuccess) {
-        QMessageBox::critical(nullptr, "Error", query.lastError().text());
+        QMessageBox::critical(nullptr, "Ошибка", query.lastError().text());
         return;
     }
 

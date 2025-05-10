@@ -1,7 +1,6 @@
 #include "authcontroller.h"
-#include "buttongroups.h"
 #include "connectioncontroller.h"
-#include "login.h"
+#include "forms.h"
 
 #include <QApplication>
 
@@ -10,13 +9,11 @@ int main(int argc, char *argv[]) {
 
     connectionController = new ConnectionController();
     authController = new AuthController();
-    buttonGroups = new ButtonGroups();
+    forms = new Forms();
 
-    Login login;
-    login.show();
     int exitCode = app.exec();
 
-    delete buttonGroups;
+    delete forms;
     delete authController;
     delete connectionController;
 
