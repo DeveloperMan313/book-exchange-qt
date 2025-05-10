@@ -40,7 +40,7 @@ void MainWindow::showLiteratureBooks() {
 }
 
 void MainWindow::selectAll() {
-    QSqlDatabase dbConn = connectionController->getConnection();
+    const QSqlDatabase &dbConn = connectionController->getConnection();
 
     this->litTable->getTable().clearContents();
 
@@ -52,7 +52,7 @@ void MainWindow::selectAll() {
 }
 
 void MainWindow::add() {
-    QSqlDatabase dbConn = connectionController->getConnection();
+    const QSqlDatabase &dbConn = connectionController->getConnection();
 
     QSqlQuery query(dbConn);
 
@@ -75,7 +75,7 @@ void MainWindow::add() {
 }
 
 void MainWindow::del() {
-    QSqlDatabase dbConn = connectionController->getConnection();
+    const QSqlDatabase &dbConn = connectionController->getConnection();
 
     int currow = this->litTable->getTable().currentRow();
 
@@ -103,7 +103,7 @@ void MainWindow::del() {
 }
 
 void MainWindow::edit() {
-    QSqlDatabase dbConn = connectionController->getConnection();
+    const QSqlDatabase &dbConn = connectionController->getConnection();
 
     int currow = this->litTable->getTable().currentRow();
 

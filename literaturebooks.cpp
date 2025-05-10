@@ -15,7 +15,7 @@ LiteratureBooks::LiteratureBooks(QWidget *parent)
 LiteratureBooks::~LiteratureBooks() { delete ui; }
 
 void LiteratureBooks::loadLiteratureBooks(qlonglong literatureId) {
-    QSqlDatabase dbConn = connectionController->getConnection();
+    const QSqlDatabase &dbConn = connectionController->getConnection();
 
     ui->twBooks->clearContents();
     ui->twBooks->setRowCount(0);
