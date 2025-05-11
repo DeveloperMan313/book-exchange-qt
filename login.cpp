@@ -9,7 +9,6 @@
 Login::Login(QWidget *parent) : QMainWindow(parent), ui(new Ui::Login) {
     ui->setupUi(this);
     this->setFixedSize(400, 300);
-    setWindowTitle("Вход");
 
     connect(ui->btnLogin, SIGNAL(clicked(bool)), this, SLOT(login()));
 }

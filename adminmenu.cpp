@@ -7,7 +7,6 @@ AdminMenu::AdminMenu(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::AdminMenu) {
     ui->setupUi(this);
     this->setFixedSize(400, 300);
-    setWindowTitle("Меню администратора");
 
     connect(ui->btnExit, &QPushButton::clicked, this, [this]() {
         this->hide();
@@ -20,6 +19,20 @@ AdminMenu::AdminMenu(QWidget *parent)
         forms->adminAuthors.init();
         forms->adminAuthors.show();
         forms->adminAuthors.raise();
+    });
+
+    connect(ui->btnGenres, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->adminGenres.init();
+        forms->adminGenres.show();
+        forms->adminGenres.raise();
+    });
+
+    connect(ui->btnLiterature, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->adminLiterature.init();
+        forms->adminLiterature.show();
+        forms->adminLiterature.raise();
     });
 }
 

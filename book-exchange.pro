@@ -10,6 +10,8 @@ CONFIG += c++17
 
 SOURCES += \
     adminauthors.cpp \
+    admingenres.cpp \
+    adminliterature.cpp \
     adminmenu.cpp \
     authcontroller.cpp \
     connectioncontroller.cpp \
@@ -22,6 +24,8 @@ SOURCES += \
 
 HEADERS += \
     adminauthors.h \
+    admingenres.h \
+    adminliterature.h \
     adminmenu.h \
     authcontroller.h \
     connectioncontroller.h \
@@ -33,6 +37,8 @@ HEADERS += \
 
 FORMS += \
     adminauthors.ui \
+    admingenres.ui \
+    adminliterature.ui \
     adminmenu.ui \
     literaturebooks.ui \
     login.ui \

@@ -2,6 +2,8 @@
 #define FORMS_H
 
 #include "adminauthors.h"
+#include "admingenres.h"
+#include "adminliterature.h"
 #include "adminmenu.h"
 #include "login.h"
 
@@ -10,6 +12,8 @@ class Forms {
     Forms();
 
     AdminAuthors adminAuthors;
+    AdminGenres adminGenres;
+    AdminLiterature adminLiterature;
     AdminMenu adminMenu;
     Login login;
 };

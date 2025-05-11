@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AdminAuthors</class>
- <widget class="QMainWindow" name="AdminAuthors">
+ <class>AdminGenres</class>
+ <widget class="QMainWindow" name="AdminGenres">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Авторы</string>
+   <string>Жанры</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
@@ -43,9 +43,9 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="1" colspan="3">
-      <widget class="QLineEdit" name="leAuthor">
+      <widget class="QLineEdit" name="leGenre">
        <property name="placeholderText">
-        <string>Введите имя</string>
+        <string>Введите жанр</string>
        </property>
       </widget>
      </item>
@@ -76,9 +76,9 @@
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QLabel" name="lbAuthor">
+      <widget class="QLabel" name="lbGenre">
        <property name="text">
-        <string>Полное имя автора</string>
+        <string>Жанр</string>
        </property>
       </widget>
      </item>
@@ -125,7 +125,7 @@
        <item>
         <widget class="QLineEdit" name="leSearch">
          <property name="placeholderText">
-          <string>Введите имя</string>
+          <string>Введите жанр</string>
          </property>
         </widget>
        </item>

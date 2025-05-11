@@ -10,7 +10,6 @@ AdminAuthors::AdminAuthors(QWidget *parent)
       dbConn(connectionController->getConnection()) {
     ui->setupUi(this);
     this->setFixedSize(800, 600);
-    setWindowTitle("Авторы");
 
     this->authorsTable = new DbTable(*ui->twData, {"id", "Полное имя автора"});
 
