@@ -20,7 +20,9 @@ SOURCES += \
     literaturebooks.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    usermenu.cpp \
+    usermybooks.cpp
 
 HEADERS += \
     adminauthors.h \
@@ -33,7 +35,9 @@ HEADERS += \
     forms.h \
     literaturebooks.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    usermenu.h \
+    usermybooks.h
 
 FORMS += \
     adminauthors.ui \
@@ -42,7 +46,9 @@ FORMS += \
     adminmenu.ui \
     literaturebooks.ui \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    usermenu.ui \
+    usermybooks.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

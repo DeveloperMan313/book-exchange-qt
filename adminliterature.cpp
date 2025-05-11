@@ -17,7 +17,8 @@ AdminLiterature::AdminLiterature(QWidget *parent)
 
     connect(ui->btnAdd, SIGNAL(clicked(bool)), this, SLOT(add()));
 
-    connect(ui->btnSearch, SIGNAL(clicked(bool)), this, SLOT(search()));
+    connect(ui->btnSearch, &QPushButton::clicked, this,
+            [this]() { this->loadTable(); });
 
     connect(ui->btnMenu, &QPushButton::clicked, this, [this]() {
         this->hide();
@@ -32,6 +33,7 @@ void AdminLiterature::init() {
     this->loadTable();
 
     ui->leName->setText("");
+    ui->leSearch->setText("");
 
     ui->cbAuthor->clear();
     QSqlQuery queryAuthors(dbConn);
@@ -93,25 +95,16 @@ void AdminLiterature::add() {
     this->init();
 }
 
-void AdminLiterature::search() {
-    QString authorName = ui->leSearch->text().trimmed();
-    if (authorName == "") {
-        this->loadTable();
-        return;
-    }
-
-    QSqlQuery query(dbConn);
-    query.prepare("SELECT genre_id, genre_name FROM genre WHERE genre_name "
-                  "ILIKE :genre_name");
-    query.bindValue(":genre_name", QString("%%1%").arg(authorName));
-    this->genresTable->requestData(query);
-}
-
 void AdminLiterature::loadTable() {
+    QString litName = ui->leSearch->text().trimmed();
+
     QSqlQuery query(dbConn);
     query.prepare(
-        "SELECT l.lit_id, l.lit_name, a.author_name, g.genre_name, genre_name "
+        "SELECT l.lit_id, l.lit_name, a.author_name, g.genre_name "
         "FROM literature as l JOIN author as a ON l.author_id = a.author_id "
-        "JOIN genre as g ON l.genre_id = g.genre_id ORDER BY l.lit_name");
+        "JOIN genre as g ON l.genre_id = g.genre_id WHERE l.lit_name ILIKE "
+        ":lit_name "
+        "ORDER BY l.lit_name");
+    query.bindValue(":lit_name", QString("%%1%").arg(litName));
     this->genresTable->requestData(query);
 }

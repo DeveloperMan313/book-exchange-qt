@@ -34,6 +34,8 @@ void Login::login() {
         forms->adminMenu.show();
         forms->adminMenu.raise();
     } else {
-        QMessageBox::critical(this, "Ошибка", "TODO: меню пользователя");
+        forms->userMenu.init();
+        forms->userMenu.show();
+        forms->userMenu.raise();
     }
 }

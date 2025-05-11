@@ -1,0 +1,44 @@
+#ifndef USERMYBOOKS_H
+#define USERMYBOOKS_H
+
+#include "dbtable.h"
+
+#include <QMainWindow>
+
+namespace Ui {
+class UserMyBooks;
+}
+
+class UserMyBooks : public QMainWindow {
+    Q_OBJECT
+
+  public:
+    explicit UserMyBooks(QWidget *parent = nullptr);
+    ~UserMyBooks();
+
+    void init();
+
+  private slots:
+    void save();
+
+    void setAddMode();
+
+    void onCellClicked(int row);
+
+  private:
+    enum class Mode { Add, Edit } mode;
+    int selectedBookId;
+    Ui::UserMyBooks *ui;
+    DbTable *genresTable;
+    const QSqlDatabase &dbConn;
+
+    void add();
+
+    void update();
+
+    void loadTable();
+
+    bool validateISBN(const QString &isbn);
+};
+
+#endif // USERMYBOOKS_H

@@ -21,8 +21,6 @@ class AdminLiterature : public QMainWindow {
   private slots:
     void add();
 
-    void search();
-
   private:
     Ui::AdminLiterature *ui;
     DbTable *genresTable;

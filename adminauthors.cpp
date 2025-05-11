@@ -30,6 +30,7 @@ void AdminAuthors::init() {
     this->loadTable();
 
     ui->leAuthor->setText("");
+    ui->leSearch->setText("");
 }
 
 void AdminAuthors::add() {

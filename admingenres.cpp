@@ -6,7 +6,6 @@
 #include <QCompleter>
 #include <QMessageBox>
 
-
 AdminGenres::AdminGenres(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::AdminGenres),
       dbConn(connectionController->getConnection()) {
@@ -32,6 +31,7 @@ void AdminGenres::init() {
     this->loadTable();
 
     ui->leGenre->setText("");
+    ui->leSearch->setText("");
 }
 
 void AdminGenres::add() {
