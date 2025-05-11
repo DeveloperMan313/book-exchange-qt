@@ -8,6 +8,7 @@
 #include "login.h"
 #include "usermenu.h"
 #include "usermybooks.h"
+#include "useroffers.h"
 
 class Forms {
   public:
@@ -20,6 +21,7 @@ class Forms {
     Login login;
     UserMenu userMenu;
     UserMyBooks userMyBooks;
+    UserOffers userOffers;
 };
 
 extern Forms *forms;

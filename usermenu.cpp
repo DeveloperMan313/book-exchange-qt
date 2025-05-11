@@ -20,6 +20,13 @@ UserMenu::UserMenu(QWidget *parent)
         forms->userMyBooks.show();
         forms->userMyBooks.raise();
     });
+
+    connect(ui->btnOffers, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->userOffers.init();
+        forms->userOffers.show();
+        forms->userOffers.raise();
+    });
 }
 
 void UserMenu::init() {
