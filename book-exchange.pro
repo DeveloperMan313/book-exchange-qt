@@ -23,7 +23,8 @@ SOURCES += \
     mainwindow.cpp \
     usermenu.cpp \
     usermybooks.cpp \
-    useroffers.cpp
+    useroffers.cpp \
+    userbook.cpp
 
 HEADERS += \
     adminauthors.h \
@@ -39,7 +40,8 @@ HEADERS += \
     mainwindow.h \
     usermenu.h \
     usermybooks.h \
-    useroffers.h
+    useroffers.h \
+    userbook.h
 
 FORMS += \
     adminauthors.ui \
@@ -51,7 +53,8 @@ FORMS += \
     mainwindow.ui \
     usermenu.ui \
     usermybooks.ui \
-    useroffers.ui
+    useroffers.ui \
+    userbook.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

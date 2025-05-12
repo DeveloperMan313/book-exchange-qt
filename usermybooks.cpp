@@ -14,7 +14,7 @@ UserMyBooks::UserMyBooks(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(800, 600);
 
-    this->genresTable =
+    this->myBooksTable =
         new DbTable(*ui->twData, {"id", "Произведение", "Автор", "Жанр", "ISBN",
                                   "Описание", "Объявление открыто"});
 
@@ -35,7 +35,10 @@ UserMyBooks::UserMyBooks(QWidget *parent)
     });
 }
 
-UserMyBooks::~UserMyBooks() { delete ui; }
+UserMyBooks::~UserMyBooks() {
+    delete ui;
+    delete myBooksTable;
+}
 
 void UserMyBooks::init() {
     this->loadTable();
@@ -175,7 +178,7 @@ void UserMyBooks::loadTable() {
     query.prepare(queryString);
     query.bindValue(":user_id", authController->getUser().id);
     query.bindValue(":lit_name", QString("%%1%").arg(litName));
-    this->genresTable->requestData(query);
+    this->myBooksTable->requestData(query);
 }
 
 bool UserMyBooks::validateISBN(const QString &isbn) {

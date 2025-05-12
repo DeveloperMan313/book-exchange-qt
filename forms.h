@@ -6,6 +6,7 @@
 #include "adminliterature.h"
 #include "adminmenu.h"
 #include "login.h"
+#include "userbook.h"
 #include "usermenu.h"
 #include "usermybooks.h"
 #include "useroffers.h"
@@ -19,6 +20,7 @@ class Forms {
     AdminLiterature adminLiterature;
     AdminMenu adminMenu;
     Login login;
+    UserBook userBook;
     UserMenu userMenu;
     UserMyBooks userMyBooks;
     UserOffers userOffers;

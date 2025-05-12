@@ -67,6 +67,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="btnSwaps">
+       <property name="text">
+        <string>Обмены</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="btnMyReviews">
        <property name="text">
         <string>Мои отзывы</string>
@@ -89,7 +96,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

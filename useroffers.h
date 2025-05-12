@@ -32,6 +32,8 @@ class UserOffers : public QMainWindow {
     DbTable *othersOffersTable;
     const QSqlDatabase &dbConn;
 
+    void loadMyOffersTable();
+
     void loadOthersOffersTable();
 };
 

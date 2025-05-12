@@ -21,10 +21,13 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="frame">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
+      <y>350</y>
       <width>291</width>
       <height>181</height>
      </rect>
@@ -130,9 +133,9 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>10</x>
       <y>10</y>
-      <width>481</width>
+      <width>781</width>
       <height>331</height>
      </rect>
     </property>
@@ -168,6 +171,9 @@
     </layout>
    </widget>
    <widget class="QTableWidget" name="twMine">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -190,7 +196,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

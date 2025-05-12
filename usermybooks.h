@@ -29,7 +29,7 @@ class UserMyBooks : public QMainWindow {
     enum class Mode { Add, Edit } mode;
     int selectedBookId;
     Ui::UserMyBooks *ui;
-    DbTable *genresTable;
+    DbTable *myBooksTable;
     const QSqlDatabase &dbConn;
 
     void add();
