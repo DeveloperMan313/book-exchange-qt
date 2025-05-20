@@ -9,6 +9,7 @@
 #include "userbook.h"
 #include "usermenu.h"
 #include "usermybooks.h"
+#include "usermyreviews.h"
 #include "useroffers.h"
 #include "userswaps.h"
 
@@ -26,6 +27,7 @@ class Forms {
     UserMyBooks userMyBooks;
     UserOffers userOffers;
     UserSwaps userSwaps;
+    UserMyReviews userMyReviews;
 };
 
 extern Forms *forms;

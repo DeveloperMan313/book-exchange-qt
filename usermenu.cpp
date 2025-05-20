@@ -34,6 +34,13 @@ UserMenu::UserMenu(QWidget *parent)
         forms->userSwaps.show();
         forms->userSwaps.raise();
     });
+
+    connect(ui->btnMyReviews, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->userMyReviews.init();
+        forms->userMyReviews.show();
+        forms->userMyReviews.raise();
+    });
 }
 
 void UserMenu::init() {

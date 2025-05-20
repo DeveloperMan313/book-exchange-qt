@@ -91,6 +91,8 @@ void UserSwaps::onSwapClicked() {
     ui->btnSwap->setEnabled(false);
     ui->btnOthersBook->setEnabled(false);
     this->loadOthersSwapsTable();
+
+    QMessageBox::information(nullptr, "Успешно", "Обмен совершен");
 }
 
 void UserSwaps::onOthersBookClicked() {

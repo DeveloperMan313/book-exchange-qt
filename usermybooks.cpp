@@ -62,6 +62,7 @@ void UserMyBooks::init() {
     ui->leISBN->setText("");
     ui->teDescription->setText("");
     ui->leSearch->setText("");
+    ui->chbIsOffered->setChecked(false);
 }
 
 void UserMyBooks::save() {
