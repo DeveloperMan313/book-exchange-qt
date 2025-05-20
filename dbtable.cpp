@@ -4,7 +4,7 @@
 #include "qsqlerror.h"
 
 // первое значение в labels должно быть id
-DbTable::DbTable(QTableWidget &table, const QStringList &labels, bool hideId)
+DbTable::DbTable(QTableWidget &table, const QStringList &labels, int hiddenCnt)
     : table(table) {
     this->table.setColumnCount(labels.length());
     this->table.setHorizontalHeaderLabels(labels);
@@ -13,7 +13,9 @@ DbTable::DbTable(QTableWidget &table, const QStringList &labels, bool hideId)
     this->table.setSelectionBehavior(QAbstractItemView::SelectRows);
     this->table.horizontalHeader()->setStretchLastSection(true);
     this->table.setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->table.setColumnHidden(0, hideId);
+    for (int i = 0; i < hiddenCnt; ++i) {
+        this->table.setColumnHidden(i, true);
+    }
 }
 
 // первое значение в query должно быть id, оно не отображается

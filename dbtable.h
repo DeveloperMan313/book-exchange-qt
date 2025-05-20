@@ -6,7 +6,7 @@
 
 class DbTable {
   public:
-    DbTable(QTableWidget &table, const QStringList &labels, bool hideId = true);
+    DbTable(QTableWidget &table, const QStringList &labels, int hiddenCnt = 1);
 
     void requestData(QSqlQuery &query);
 

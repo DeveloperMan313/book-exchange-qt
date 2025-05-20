@@ -12,11 +12,15 @@ UserMyBooks::UserMyBooks(QWidget *parent)
     : QMainWindow(parent), mode(Mode::Add), ui(new Ui::UserMyBooks),
       dbConn(connectionController->getConnection()) {
     ui->setupUi(this);
-    this->setFixedSize(800, 600);
+    this->setFixedSize(1000, 600);
 
     this->myBooksTable =
         new DbTable(*ui->twData, {"id", "Произведение", "Автор", "Жанр", "ISBN",
                                   "Описание", "Объявление открыто"});
+
+    this->reviewsTable =
+        new DbTable(*ui->twReviews,
+                    {"id", "Пользователь", "Оценка", "Текст", "Дата создания"});
 
     connect(ui->btnSave, SIGNAL(clicked(bool)), this, SLOT(save()));
 
@@ -89,6 +93,8 @@ void UserMyBooks::onCellClicked(int row) {
     ui->leISBN->setText(ui->twData->item(row, 4)->text());
     ui->teDescription->setText(ui->twData->item(row, 5)->text());
     ui->chbIsOffered->setChecked(ui->twData->item(row, 6)->text() == "true");
+
+    this->loadReviewsTable();
 }
 
 void UserMyBooks::add() {
@@ -179,6 +185,18 @@ void UserMyBooks::loadTable() {
     query.bindValue(":user_id", authController->getUser().id);
     query.bindValue(":lit_name", QString("%%1%").arg(litName));
     this->myBooksTable->requestData(query);
+}
+
+void UserMyBooks::loadReviewsTable() {
+    QSqlQuery query(dbConn);
+    query.prepare(
+        "SELECT r.rating_id, u.username, r.score, r.text, r.creation_date "
+        "FROM rating AS r "
+        "JOIN users AS u ON r.user_id = u.user_id "
+        "WHERE r.book_id = :book_id");
+
+    query.bindValue(":book_id", this->selectedBookId);
+    this->reviewsTable->requestData(query);
 }
 
 bool UserMyBooks::validateISBN(const QString &isbn) {

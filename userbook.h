@@ -27,7 +27,10 @@ class UserBook : public QMainWindow {
     Ui::UserBook *ui;
     int myBookId, othersBookId, ownerId;
     DbTable *myBooksTable;
+    DbTable *reviewsTable;
     const QSqlDatabase &dbConn;
+
+    void loadReviewsTable();
 
     void loadMyBooksTable();
 };

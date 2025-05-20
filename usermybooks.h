@@ -30,6 +30,7 @@ class UserMyBooks : public QMainWindow {
     int selectedBookId;
     Ui::UserMyBooks *ui;
     DbTable *myBooksTable;
+    DbTable *reviewsTable;
     const QSqlDatabase &dbConn;
 
     void add();
@@ -37,6 +38,8 @@ class UserMyBooks : public QMainWindow {
     void update();
 
     void loadTable();
+
+    void loadReviewsTable();
 
     bool validateISBN(const QString &isbn);
 };

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1000</width>
     <height>600</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>50</y>
       <width>291</width>
       <height>251</height>
      </rect>
@@ -162,8 +162,8 @@
      <rect>
       <x>310</x>
       <y>10</y>
-      <width>481</width>
-      <height>561</height>
+      <width>681</width>
+      <height>291</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="vlTable">
@@ -208,7 +208,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>10</y>
       <width>291</width>
       <height>24</height>
      </rect>
@@ -217,13 +217,41 @@
      <string>Добавить книгу</string>
     </property>
    </widget>
+   <widget class="QTableWidget" name="twReviews">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>350</y>
+      <width>881</width>
+      <height>181</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbReviewsTitle">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>310</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Отзывы</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1000</width>
      <height>21</height>
     </rect>
    </property>

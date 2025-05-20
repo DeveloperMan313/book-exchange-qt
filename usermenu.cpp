@@ -27,6 +27,13 @@ UserMenu::UserMenu(QWidget *parent)
         forms->userOffers.show();
         forms->userOffers.raise();
     });
+
+    connect(ui->btnSwaps, &QPushButton::clicked, this, [this]() {
+        this->hide();
+        forms->userSwaps.init();
+        forms->userSwaps.show();
+        forms->userSwaps.raise();
+    });
 }
 
 void UserMenu::init() {

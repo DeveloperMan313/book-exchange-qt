@@ -10,6 +10,7 @@
 #include "usermenu.h"
 #include "usermybooks.h"
 #include "useroffers.h"
+#include "userswaps.h"
 
 class Forms {
   public:
@@ -24,6 +25,7 @@ class Forms {
     UserMenu userMenu;
     UserMyBooks userMyBooks;
     UserOffers userOffers;
+    UserSwaps userSwaps;
 };
 
 extern Forms *forms;
