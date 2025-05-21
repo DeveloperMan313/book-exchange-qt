@@ -19,16 +19,28 @@ class AdminGenres : public QMainWindow {
     void init();
 
   private slots:
-    void add();
+    void save();
+
+    void del();
+
+    void setAddMode();
+
+    void onCellClicked(int row);
 
     void search();
 
   private:
+    enum class Mode { Add, Edit } mode;
+    int selectedGenreId;
     Ui::AdminGenres *ui;
     DbTable *genresTable;
     const QSqlDatabase &dbConn;
 
     void loadTable();
+
+    void add();
+
+    void update();
 };
 
 #endif // ADMINGENRES_H

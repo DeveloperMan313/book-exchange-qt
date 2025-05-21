@@ -7,14 +7,21 @@
 #include <QMessageBox>
 
 AdminGenres::AdminGenres(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::AdminGenres),
+    : QMainWindow(parent), mode(Mode::Add), ui(new Ui::AdminGenres),
       dbConn(connectionController->getConnection()) {
     ui->setupUi(this);
     this->setFixedSize(800, 600);
 
     this->genresTable = new DbTable(*ui->twData, {"id", "Жанр"});
 
-    connect(ui->btnAdd, SIGNAL(clicked(bool)), this, SLOT(add()));
+    connect(ui->btnSave, SIGNAL(clicked(bool)), this, SLOT(save()));
+
+    connect(ui->btnDel, SIGNAL(clicked(bool)), this, SLOT(del()));
+
+    connect(ui->btnAddMode, SIGNAL(clicked(bool)), this, SLOT(setAddMode()));
+
+    connect(ui->twData, SIGNAL(cellClicked(int, int)), this,
+            SLOT(onCellClicked(int)));
 
     connect(ui->btnSearch, SIGNAL(clicked(bool)), this, SLOT(search()));
 
@@ -30,26 +37,45 @@ AdminGenres::~AdminGenres() { delete ui; }
 void AdminGenres::init() {
     this->loadTable();
 
-    ui->leGenre->setText("");
     ui->leSearch->setText("");
+
+    this->setAddMode();
 }
 
-void AdminGenres::add() {
-    QString genreName = ui->leGenre->text().trimmed();
-    if (genreName == "") {
-        QMessageBox::critical(nullptr, "Ошибка", "Введите жанр");
-        return;
+void AdminGenres::save() {
+    if (this->mode == Mode::Add) {
+        this->add();
     }
+    if (this->mode == Mode::Edit) {
+        this->update();
+    }
+}
 
+void AdminGenres::del() {
     QSqlQuery query(dbConn);
-    query.prepare("INSERT INTO genre (genre_name) VALUES (:genre_name)");
-    query.bindValue(":genre_name", genreName);
+    query.prepare("DELETE FROM genre WHERE genre_id = :genre_id");
+    query.bindValue(":genre_id", this->selectedGenreId);
     if (!query.exec()) {
-        QMessageBox::critical(nullptr, "Ошибка", "Не удалось добавить жанр");
+        QMessageBox::critical(nullptr, "Ошибка",
+                              "Этот жанр невозможно удалить");
         return;
     }
 
     this->init();
+}
+
+void AdminGenres::setAddMode() {
+    this->mode = Mode::Add;
+    ui->leGenre->clear();
+    ui->twData->clearSelection();
+    ui->btnDel->setEnabled(false);
+}
+
+void AdminGenres::onCellClicked(int row) {
+    this->mode = Mode::Edit;
+    this->selectedGenreId = ui->twData->item(row, 0)->text().toInt();
+    ui->leGenre->setText(ui->twData->item(row, 1)->text());
+    ui->btnDel->setEnabled(true);
 }
 
 void AdminGenres::search() {
@@ -70,4 +96,42 @@ void AdminGenres::loadTable() {
     QSqlQuery query(dbConn);
     query.prepare("SELECT genre_id, genre_name FROM genre");
     this->genresTable->requestData(query);
+}
+
+void AdminGenres::add() {
+    QString genreName = ui->leGenre->text().trimmed();
+    if (genreName == "") {
+        QMessageBox::critical(nullptr, "Ошибка", "Введите жанр");
+        return;
+    }
+
+    QSqlQuery query(dbConn);
+    query.prepare("INSERT INTO genre (genre_name) VALUES (:genre_name)");
+    query.bindValue(":genre_name", genreName);
+    if (!query.exec()) {
+        QMessageBox::critical(nullptr, "Ошибка", "Не удалось добавить жанр");
+        return;
+    }
+
+    this->init();
+}
+
+void AdminGenres::update() {
+    QString genreName = ui->leGenre->text().trimmed();
+    if (genreName == "") {
+        QMessageBox::critical(nullptr, "Ошибка", "Введите жанр");
+        return;
+    }
+
+    QSqlQuery query(dbConn);
+    query.prepare(
+        "UPDATE genre SET genre_name = :genre_name WHERE genre_id = :genre_id");
+    query.bindValue(":genre_name", genreName);
+    query.bindValue(":genre_id", this->selectedGenreId);
+    if (!query.exec()) {
+        QMessageBox::critical(nullptr, "Ошибка", "Не удалось изменить жанр");
+        return;
+    }
+
+    this->init();
 }

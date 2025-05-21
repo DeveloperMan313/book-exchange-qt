@@ -19,15 +19,27 @@ class AdminAuthors : public QMainWindow {
     void init();
 
   private slots:
-    void add();
+    void save();
+
+    void del();
+
+    void setAddMode();
+
+    void onCellClicked(int row);
 
     void search();
 
   private:
+    enum class Mode { Add, Edit } mode;
+    int selectedAuthorId;
     Ui::AdminAuthors *ui;
     DbTable *authorsTable;
 
     void loadTable();
+
+    void add();
+
+    void update();
 
     const QSqlDatabase &dbConn;
 };
