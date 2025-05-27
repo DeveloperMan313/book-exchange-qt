@@ -14,25 +14,12 @@ UserOffers::UserOffers(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(800, 600);
 
-    ui->cbMyBook->setEnabled(false);
-    ui->leOthersBook->setEnabled(false);
-    ui->btnOfferSwap->setEnabled(false);
-    ui->btnDelOffer->setEnabled(false);
-
-    this->myOffersTable =
-        new DbTable(*ui->twMine, {"id", "Моя книга", "Обмен с", "Обмен на"});
-
     this->othersOffersTable =
         new DbTable(*ui->twOthers, {"id", "Книга", "Автор", "Жанр", "ISBN",
                                     "Описание", "Владелец"});
 
-    connect(ui->twMine, SIGNAL(cellClicked(int, int)), this,
-            SLOT(onMyOfferClicked(int)));
-
-    connect(ui->twOthers, SIGNAL(cellClicked(int, int)), this,
+    connect(ui->twOthers, SIGNAL(cellDoubleClicked(int, int)), this,
             SLOT(onOthersOfferClicked(int)));
-
-    connect(ui->btnOfferSwap, SIGNAL(clicked(bool)), this, SLOT(offerSwap()));
 
     connect(ui->btnSearch, &QPushButton::clicked, this,
             [this]() { this->loadOthersOffersTable(); });
@@ -44,39 +31,15 @@ UserOffers::UserOffers(QWidget *parent)
     });
 }
 
-UserOffers::~UserOffers() { delete ui; }
-
-void UserOffers::init() {
-    this->loadMyOffersTable();
-    this->loadOthersOffersTable();
-
-    ui->cbMyBook->clear();
-    QSqlQuery queryMyBooks(dbConn);
-    queryMyBooks.prepare(
-        "SELECT l.lit_name FROM book AS b JOIN literature AS l ON b.lit_id = "
-        "l.lit_id WHERE b.user_id = :user_id ORDER BY l.lit_name");
-    queryMyBooks.bindValue(":user_id", authController->getUser().id);
-    if (!queryMyBooks.exec()) {
-        QMessageBox::critical(nullptr, "Ошибка",
-                              "Не удалось получить список Ваших книг");
-        return;
-    }
-    while (queryMyBooks.next()) {
-        ui->cbMyBook->addItem(queryMyBooks.value(0).toString());
-    }
-
-    ui->leSearch->setText("");
+UserOffers::~UserOffers() {
+    delete ui;
+    delete othersOffersTable;
 }
 
-void UserOffers::onMyOfferClicked(int row) {
-    ui->twOthers->clearSelection();
+void UserOffers::init() {
+    this->loadOthersOffersTable();
 
-    ui->cbMyBook->setCurrentText(ui->twMine->item(row, 1)->text());
-    ui->cbMyBook->setEnabled(false);
-    ui->leOthersBook->setText(ui->twMine->item(row, 3)->text());
-
-    ui->btnOfferSwap->setEnabled(false);
-    ui->btnDelOffer->setEnabled(true);
+    ui->leSearch->setText("");
 }
 
 void UserOffers::onOthersOfferClicked(int row) {
@@ -86,38 +49,6 @@ void UserOffers::onOthersOfferClicked(int row) {
     this->hide();
     forms->userBook.show();
     forms->userBook.raise();
-
-    return;
-
-    ui->twMine->clearSelection();
-
-    ui->cbMyBook->setCurrentIndex(-1);
-    ui->cbMyBook->setEnabled(true);
-    ui->leOthersBook->setText(ui->twOthers->item(row, 1)->text());
-
-    ui->btnOfferSwap->setEnabled(true);
-    ui->btnDelOffer->setEnabled(false);
-}
-
-void UserOffers::offerSwap() {
-    int bookId = ui->twOthers->selectedItems()[0]->text().toInt();
-
-    QSqlQuery query(dbConn);
-    query.prepare("");
-}
-
-void UserOffers::loadMyOffersTable() {
-    QSqlQuery query(dbConn);
-    query.prepare(
-        "SELECT s.swap_id, l_my.lit_name, u.username, l_others.lit_name "
-        "FROM swap AS s "
-        "JOIN book AS b_my ON s.book_1_id = b_my.book_id "
-        "JOIN literature AS l_my ON b_my.lit_id = l_my.lit_id "
-        "JOIN users AS u ON s.user_2_id = u.user_id "
-        "JOIN book AS b_others ON s.book_2_id = b_others.book_id "
-        "JOIN literature AS l_others ON b_others.lit_id = l_others.lit_id");
-
-    this->myOffersTable->requestData(query);
 }
 
 void UserOffers::loadOthersOffersTable() {

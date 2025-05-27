@@ -19,20 +19,13 @@ class UserOffers : public QMainWindow {
     void init();
 
   private slots:
-    void onMyOfferClicked(int row);
-
     void onOthersOfferClicked(int row);
-
-    void offerSwap();
 
   private:
     int selectedOfferId;
     Ui::UserOffers *ui;
-    DbTable *myOffersTable;
     DbTable *othersOffersTable;
     const QSqlDatabase &dbConn;
-
-    void loadMyOffersTable();
 
     void loadOthersOffersTable();
 };
