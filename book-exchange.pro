@@ -17,10 +17,8 @@ SOURCES += \
     connectioncontroller.cpp \
     dbtable.cpp \
     forms.cpp \
-    literaturebooks.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp \
     usermenu.cpp \
     usermybooks.cpp \
     useroffers.cpp \
@@ -37,9 +35,7 @@ HEADERS += \
     connectioncontroller.h \
     dbtable.h \
     forms.h \
-    literaturebooks.h \
     login.h \
-    mainwindow.h \
     usermenu.h \
     usermybooks.h \
     useroffers.h \
@@ -52,9 +48,7 @@ FORMS += \
     admingenres.ui \
     adminliterature.ui \
     adminmenu.ui \
-    literaturebooks.ui \
     login.ui \
-    mainwindow.ui \
     usermenu.ui \
     usermybooks.ui \
     useroffers.ui \
