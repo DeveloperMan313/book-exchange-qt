@@ -31,7 +31,7 @@ class AdminLiterature : public QMainWindow {
     enum class Mode { Add, Edit } mode;
     int selectedLiteratureId;
     Ui::AdminLiterature *ui;
-    DbTable *genresTable;
+    DbTable *literatureTable;
 
     void loadTable();
 

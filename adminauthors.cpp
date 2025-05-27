@@ -31,7 +31,10 @@ AdminAuthors::AdminAuthors(QWidget *parent)
     });
 }
 
-AdminAuthors::~AdminAuthors() { delete ui; }
+AdminAuthors::~AdminAuthors() {
+    delete ui;
+    delete authorsTable;
+}
 
 void AdminAuthors::init() {
     this->loadTable();

@@ -18,7 +18,7 @@ UserMyReviews::UserMyReviews(QWidget *parent)
         ui->cbRating->addItem(QString::number(i));
     }
 
-    this->myBooksTable =
+    this->myReviewsTable =
         new DbTable(*ui->twData,
                     {"rating_id", "book_id", "Оценка", "Текст", "Произведение",
                      "Автор", "Жанр", "ISBN", "Описание"},
@@ -43,7 +43,7 @@ UserMyReviews::UserMyReviews(QWidget *parent)
 
 UserMyReviews::~UserMyReviews() {
     delete ui;
-    delete myBooksTable;
+    delete myReviewsTable;
 }
 
 void UserMyReviews::init() {
@@ -188,5 +188,5 @@ void UserMyReviews::loadTable() {
     query.prepare(queryString);
     query.bindValue(":user_id", authController->getUser().id);
     query.bindValue(":lit_name", QString("%%1%").arg(litName));
-    this->myBooksTable->requestData(query);
+    this->myReviewsTable->requestData(query);
 }

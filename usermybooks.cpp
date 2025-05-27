@@ -42,6 +42,7 @@ UserMyBooks::UserMyBooks(QWidget *parent)
 UserMyBooks::~UserMyBooks() {
     delete ui;
     delete myBooksTable;
+    delete reviewsTable;
 }
 
 void UserMyBooks::init() {

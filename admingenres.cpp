@@ -32,7 +32,10 @@ AdminGenres::AdminGenres(QWidget *parent)
     });
 }
 
-AdminGenres::~AdminGenres() { delete ui; }
+AdminGenres::~AdminGenres() {
+    delete ui;
+    delete genresTable;
+}
 
 void AdminGenres::init() {
     this->loadTable();

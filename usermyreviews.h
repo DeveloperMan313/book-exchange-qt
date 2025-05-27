@@ -28,7 +28,7 @@ class UserMyReviews : public QMainWindow {
   private:
     int selectedReviewId, selectedBookId;
     Ui::UserMyReviews *ui;
-    DbTable *myBooksTable;
+    DbTable *myReviewsTable;
     const QSqlDatabase &dbConn;
 
     void add();

@@ -139,4 +139,8 @@ void UserSwaps::loadOthersSwapsTable() {
     this->othersSwapsTable->requestData(query);
 }
 
-UserSwaps::~UserSwaps() { delete ui; }
+UserSwaps::~UserSwaps() {
+    delete ui;
+    delete mySwapsTable;
+    delete othersSwapsTable;
+}

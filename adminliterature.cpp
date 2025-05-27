@@ -12,7 +12,7 @@ AdminLiterature::AdminLiterature(QWidget *parent)
     ui->setupUi(this);
     this->setFixedSize(800, 600);
 
-    this->genresTable =
+    this->literatureTable =
         new DbTable(*ui->twData, {"id", "Название", "Автор", "Жанр"});
 
     connect(ui->btnSave, SIGNAL(clicked(bool)), this, SLOT(save()));
@@ -34,7 +34,10 @@ AdminLiterature::AdminLiterature(QWidget *parent)
     });
 }
 
-AdminLiterature::~AdminLiterature() { delete ui; }
+AdminLiterature::~AdminLiterature() {
+    delete ui;
+    delete literatureTable;
+}
 
 void AdminLiterature::init() {
     this->loadTable();
@@ -118,7 +121,7 @@ void AdminLiterature::loadTable() {
         ":lit_name "
         "ORDER BY l.lit_name");
     query.bindValue(":lit_name", QString("%%1%").arg(litName));
-    this->genresTable->requestData(query);
+    this->literatureTable->requestData(query);
 }
 
 bool AdminLiterature::validate() {
