@@ -24,6 +24,8 @@ UserMyBooks::UserMyBooks(QWidget *parent)
 
     connect(ui->btnSave, SIGNAL(clicked(bool)), this, SLOT(save()));
 
+    connect(ui->btnDel, SIGNAL(clicked(bool)), this, SLOT(del()));
+
     connect(ui->btnAddMode, SIGNAL(clicked(bool)), this, SLOT(setAddMode()));
 
     connect(ui->twData, SIGNAL(cellClicked(int, int)), this,
@@ -73,6 +75,20 @@ void UserMyBooks::save() {
     if (this->mode == Mode::Edit) {
         this->update();
     }
+}
+
+void UserMyBooks::del() {
+    QSqlQuery query(dbConn);
+    query.prepare("DELETE FROM book WHERE book_id = :book_id");
+    query.bindValue(":book_id", this->selectedBookId);
+    if (!query.exec()) {
+        QMessageBox::critical(nullptr, "Ошибка",
+                              "Эту книгу невозможно удалить, т.к. от нее "
+                              "зависят другие записи");
+        return;
+    }
+
+    this->init();
 }
 
 void UserMyBooks::setAddMode() {

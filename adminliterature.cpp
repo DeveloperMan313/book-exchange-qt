@@ -84,8 +84,9 @@ void AdminLiterature::del() {
     query.prepare("DELETE FROM literature WHERE lit_id = :lit_id");
     query.bindValue(":lit_id", this->selectedLiteratureId);
     if (!query.exec()) {
-        QMessageBox::critical(nullptr, "Ошибка",
-                              "Это произведение невозможно удалить   ");
+        QMessageBox::critical(
+            nullptr, "Ошибка",
+            "Это произведение невозможно удалить, т.к. от него зависят книги");
         return;
     }
 

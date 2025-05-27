@@ -59,8 +59,9 @@ void AdminGenres::del() {
     query.prepare("DELETE FROM genre WHERE genre_id = :genre_id");
     query.bindValue(":genre_id", this->selectedGenreId);
     if (!query.exec()) {
-        QMessageBox::critical(nullptr, "Ошибка",
-                              "Этот жанр невозможно удалить");
+        QMessageBox::critical(
+            nullptr, "Ошибка",
+            "Этот жанр невозможно удалить, т.к. от него зависят произведения");
         return;
     }
 

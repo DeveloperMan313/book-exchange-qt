@@ -59,7 +59,8 @@ void AdminAuthors::del() {
     query.bindValue(":author_id", this->selectedAuthorId);
     if (!query.exec()) {
         QMessageBox::critical(nullptr, "Ошибка",
-                              "Этого автора невозможно удалить");
+                              "Этого автора невозможно удалить, т.к. от него "
+                              "зависят произведения");
         return;
     }
 

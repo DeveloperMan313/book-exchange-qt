@@ -21,6 +21,8 @@ class UserMyBooks : public QMainWindow {
   private slots:
     void save();
 
+    void del();
+
     void setAddMode();
 
     void onCellClicked(int row);
